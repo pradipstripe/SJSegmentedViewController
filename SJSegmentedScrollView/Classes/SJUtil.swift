@@ -30,24 +30,28 @@ class SJUtil {
      - returns: topspace in float
      */
     static func getTopSpacing(_ viewController: UIViewController) -> CGFloat {
-
+        
         if let _ = viewController.splitViewController {
             return 0
         }
-
-		var topSpacing: CGFloat = 0.0
-		let navigationController = viewController.navigationController
-
+        
+        var topSpacing: CGFloat = 0.0
+        let navigationController = viewController.navigationController
+        
         if navigationController?.children.last == viewController {
-
-			if navigationController?.isNavigationBarHidden == false {
-				topSpacing = UIApplication.shared.statusBarFrame.height
+            
+            if navigationController?.isNavigationBarHidden == false {
+                topSpacing = UIApplication.shared.statusBarFrame.height
                 if !(navigationController?.navigationBar.isOpaque)! {
                     topSpacing += (navigationController?.navigationBar.bounds.height)!
+                }else{
+                    topSpacing = 0
                 }
-			}
-		}
-		
+                
+            }
+            
+        }
+        
         return topSpacing
     }
 
